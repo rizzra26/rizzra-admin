@@ -1,4 +1,4 @@
-const API_BASE = process.env.NUXT_PUBLIC_API_BASE_URL || "http://localhost:8080/api/v1";
+const API_BASE = process.env.NUXT_PUBLIC_API_BASE_URL;
 
 function token() {
   if (import.meta.client) return localStorage.getItem("access_token") || "";

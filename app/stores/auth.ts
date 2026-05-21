@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-const API_BASE = process.env.NUXT_PUBLIC_API_BASE_URL || "http://localhost:8080/api/v1";
+const API_BASE = process.env.NUXT_PUBLIC_API_BASE_URL;
 const COOKIE_NAME = "auth_token";
 
 function setAuthCookie(token: string) {
