@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 
-const API_BASE = process.env.NUXT_PUBLIC_API_BASE_URL;
 const COOKIE_NAME = "auth_token";
 
 function setAuthCookie(token: string) {
@@ -51,7 +50,8 @@ export const useAuthStore = defineStore("auth", {
     },
 
     async login(email: string, password: string) {
-      const resp = await fetch(`${API_BASE}/auth/login`, {
+      const apiBase = useRuntimeConfig().public.apiBaseUrl;
+      const resp = await fetch(`${apiBase}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -73,7 +73,8 @@ export const useAuthStore = defineStore("auth", {
     async refresh(): Promise<boolean> {
       if (!this.refreshToken) return false;
       try {
-        const resp = await fetch(`${API_BASE}/auth/refresh`, {
+        const apiBase = useRuntimeConfig().public.apiBaseUrl;
+        const resp = await fetch(`${apiBase}/auth/refresh`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ refresh_token: this.refreshToken }),

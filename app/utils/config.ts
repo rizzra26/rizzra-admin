@@ -1,4 +1,7 @@
-export const API_BASE = process.env.NUXT_PUBLIC_API_BASE_URL;
+export function useApiBase() {
+  const config = useRuntimeConfig()
+  return config.public.apiBaseUrl as string
+}
 
 export function authHeader(): Record<string, string> {
   if (!import.meta.client) return {};

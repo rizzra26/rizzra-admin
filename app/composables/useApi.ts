@@ -1,4 +1,4 @@
-const API_BASE = process.env.NUXT_PUBLIC_API_BASE_URL;
+import { useApiBase } from "~/app/utils/config";
 
 function token() {
   if (import.meta.client) return localStorage.getItem("access_token") || "";
@@ -6,6 +6,8 @@ function token() {
 }
 
 export function useApi() {
+  const apiBase = useApiBase();
+
   async function request<T>(
     path: string,
     options: { method?: string; body?: any } = {},
@@ -16,7 +18,7 @@ export function useApi() {
     };
     if (token()) headers["Authorization"] = `Bearer ${token()}`;
 
-    const resp = await fetch(`${API_BASE}${path}`, {
+    const resp = await fetch(`${apiBase}${path}`, {
       method,
       headers,
       body: body ? JSON.stringify(body) : undefined,
@@ -27,7 +29,7 @@ export function useApi() {
       const refreshed = await auth.refresh();
       if (refreshed) {
         headers["Authorization"] = `Bearer ${token()}`;
-        const retry = await fetch(`${API_BASE}${path}`, {
+        const retry = await fetch(`${apiBase}${path}`, {
           method,
           headers,
           body: body ? JSON.stringify(body) : undefined,
