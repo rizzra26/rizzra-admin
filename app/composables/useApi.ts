@@ -1,4 +1,4 @@
-import { useApiBase } from "~/app/utils/config";
+import { useApiBase } from "../utils/config";
 
 function token() {
   if (import.meta.client) return localStorage.getItem("access_token") || "";
