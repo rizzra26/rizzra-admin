@@ -1,4 +1,4 @@
-export const API_BASE = 'http://localhost:8888/api/v1'
+export const API_BASE = process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:8080/api/v1'
 
 export function authHeader(): Record<string, string> {
   if (!import.meta.client) return {}
