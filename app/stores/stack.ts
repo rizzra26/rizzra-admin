@@ -27,10 +27,7 @@ function token() {
 }
 
 function baseUrl() {
-  return import.meta.client
-    ? (window as any).__NUXT__?.public?.apiBaseUrl ||
-        "http://localhost:8888/api/v1"
-    : "http://localhost:8888/api/v1";
+  return useRuntimeConfig().public.apiBaseUrl as string;
 }
 
 async function api(path: string, opts: RequestInit = {}): Promise<any> {

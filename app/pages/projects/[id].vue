@@ -142,7 +142,7 @@ const techList = computed(() => tech.value)
           </label>
           <span v-if="cover_url" class="text-sm text-text-muted">Uploaded</span>
         </div>
-        <img v-if="cover_url" :src="`http://localhost:8080${cover_url}`" class="mt-3 h-32 rounded-lg object-cover" />
+        <img v-if="cover_url" :src="cover_url" class="mt-3 h-32 rounded-lg object-cover" />
       </div>
       <button @click="handleSave" :disabled="saving" class="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover disabled:opacity-50">
         {{ saving ? 'Saving...' : 'Save' }}
